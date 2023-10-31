@@ -1,12 +1,12 @@
 import './style.css';
 
-interface toDo{
-  title:string,
-  isCompleted:boolean,
-  readonly id:string
+interface toDo {
+  title: string,
+  isCompleted: boolean,
+  readonly id: string
 }
 
-let todoArr:toDo[] = [];
+let todoArr: toDo[] = [];
 
 const toDosContainer = document.querySelector(".todos") as HTMLDivElement;
 
@@ -14,56 +14,57 @@ const todoInput = <HTMLInputElement>document.getElementsByName("todoAdd")[0];
 
 const myForm = document.getElementById("myForm") as HTMLFormElement;
 
-myForm.onsubmit = (e:SubmitEvent)=>{
+myForm.onsubmit = (e: SubmitEvent) => {
   e.preventDefault();
-  let todo:toDo = {
-    title:todoInput.value,
-    isCompleted:false,
-    id:String(Math.ceil(Math.random()*1000))
+  let todo: toDo = {
+    title: todoInput.value,
+    isCompleted: false,
+    id: String(Math.ceil(Math.random() * 1000))
   };
   todoArr.push(todo);
   todoInput.value = "";
   renderTodos(todoArr);
 }
 
-const deleteTodo = (id:string)=>{
-  const index = todoArr.findIndex((item)=>item.id === id);
-  todoArr.splice(index,1);
+const deleteTodo = (id: string) => {
+  const index = todoArr.findIndex((item) => item.id === id);
+  todoArr.splice(index, 1);
   renderTodos(todoArr);
 }
 
-const generateADiv = (todo:toDo)=>{
-  const todoDiv:HTMLDivElement = document.createElement("div");
+const generateADiv = (todo: toDo) => {
+  const todoDiv: HTMLDivElement = document.createElement("div");
   todoDiv.className = "todos";
   //creating a checkBox
-  const checkBox:HTMLInputElement = document.createElement("input");
-  checkBox.setAttribute("type","checkbox");
+  const checkBox: HTMLInputElement = document.createElement("input");
+  checkBox.setAttribute("type", "checkbox");
   checkBox.className = "isCompleted";
   checkBox.checked = todo.isCompleted;
-  checkBox.onchange = ()=>{
-    pTag.className = checkBox.checked?"textCut":"";
+  checkBox.onchange = () => {
+    pTag.className = checkBox.checked ? "textCut" : "";
+    todo.isCompleted = !todo.isCompleted;
   }
   //creating a paragraph element
 
-  const pTag:HTMLParagraphElement = document.createElement("p");
+  const pTag: HTMLParagraphElement = document.createElement("p");
   pTag.innerText = todo.title;
-
+  pTag.className = todo.isCompleted ? "textCut" : "";
   //creating a delete btn
 
-  const deleteBtn:HTMLButtonElement = document.createElement("button");
+  const deleteBtn: HTMLButtonElement = document.createElement("button");
   deleteBtn.innerText = "X";
-  deleteBtn.onclick = ()=>{
+  deleteBtn.onclick = () => {
     deleteTodo(todo.id);
   }
-  const brTag:HTMLBRElement = document.createElement("br");
+  const brTag: HTMLBRElement = document.createElement("br");
   brTag.innerHTML = `<br/>`
-  todoDiv.append(checkBox,pTag,deleteBtn,brTag);
+  todoDiv.append(checkBox, pTag, deleteBtn, brTag);
   toDosContainer.append(todoDiv);
 }
 
-const renderTodos = (todos:toDo[])=>{
+const renderTodos = (todos: toDo[]) => {
   toDosContainer.innerText = "";
-  todos.forEach((todo)=>{
+  todos.forEach((todo) => {
     generateADiv(todo);
   })
 }
