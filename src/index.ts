@@ -96,5 +96,32 @@ class Product implements productType{
         this.price = price;
         this.available = available;
     }
-
 }
+
+// const btn = document.getElementById("btn")!;
+
+// btn.onclick = function(){
+//     console.log("CLicked");
+//     alert("Hello");
+// };
+
+//Utility Type
+//Type can be either interface or type
+//Partial<Type>,Required<Type>,Readonly<Type>,Record<Keys,Type>,Pick<Type,keys>,Omit<Type,keys>,Exclude<Type,ExcludedUnion>
+//Extract<Type,Union>,NonNullable
+type User = Record<"name"|"email"|"age",string>
+
+interface age{
+    ageVal:number,
+}
+
+type userNames = "akla" | "ekku" | "reyas" | "farheena";
+
+const users:Record<userNames,age> = {
+    akla:{ageVal:19},
+    ekku:{ageVal:16},
+    farheena:{ageVal:41},
+    reyas:{ageVal:43}
+}
+
+console.log(users);

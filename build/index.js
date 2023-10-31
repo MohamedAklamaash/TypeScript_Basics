@@ -60,3 +60,10 @@ class Product {
         this.available = available;
     }
 }
+const users = {
+    akla: { ageVal: 19 },
+    ekku: { ageVal: 16 },
+    farheena: { ageVal: 41 },
+    reyas: { ageVal: 43 }
+};
+console.log(users);
