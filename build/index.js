@@ -67,3 +67,25 @@ const users = {
     reyas: { ageVal: 43 }
 };
 console.log(users);
+//Using Generics
+const func1 = (n) => {
+    return n;
+};
+const ans1 = func1("20");
+const ans2 = func1(100);
+;
+const func3 = (arg) => {
+    if (Array.isArray(arg)) {
+        return { value: arg, isbool: false };
+    }
+    if (typeof arg === "object") {
+        return { value: arg, isbool: false };
+    }
+    return { value: arg, isbool: true };
+};
+func3("akla");
+func3(10);
+const func4 = (arg) => {
+    return arg;
+};
+func4({ name: "akla", id: 10 });

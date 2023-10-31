@@ -108,7 +108,7 @@ class Product implements productType{
 //Utility Type
 //Type can be either interface or type
 //Partial<Type>,Required<Type>,Readonly<Type>,Record<Keys,Type>,Pick<Type,keys>,Omit<Type,keys>,Exclude<Type,ExcludedUnion>
-//Extract<Type,Union>,NonNullable
+//Extract<Type,Union>,NonNullable,Parameters,Constructor,ReturnType,InstanceType
 type User = Record<"name"|"email"|"age",string>
 
 interface age{
@@ -125,3 +125,46 @@ const users:Record<userNames,age> = {
 }
 
 console.log(users);
+
+//Using Generics
+
+const func1 = <T>(n:T):T=>{
+    return n;
+}
+
+const ans1 = func1<string>("20");
+const ans2 = func1<number>(100);
+
+//using interface 
+
+interface boolCheck<T>{
+    value:T,
+    isbool:boolean,
+};
+
+const func3 = <T,U extends keyof T>(arg:T):boolCheck<T>=>{
+    if(Array.isArray(arg)){
+        return {value:arg,isbool:false};
+    }
+    if(typeof arg === "object"){
+        return {value:arg,isbool:false};
+    }
+    return {value:arg,isbool:true};
+}
+
+func3("akla");
+func3(10);
+
+//extending generics => narrowing generics
+
+interface nam<T> {
+    name?: T;
+    id:number
+}
+
+const func4 = <T>(arg: nam<T>): nam<T> => {
+    return arg;
+};
+
+func4({ name: "akla",id:10 });
+
