@@ -64,3 +64,37 @@ const funcer:func2 = (...m)=>{
 };
 
 funcer(1,2,3);
+
+class player{
+    public readonly id:string;
+    constructor(private age:number,protected gender:string,public name:string,id:string){
+        this.id = String(Math.ceil(Math.random()*100));
+        this.age = age;
+        this.gender = gender;
+        this.name = name;
+    }
+    get getAge():number{
+        return this.age;
+    }
+
+    set setName(name:string){
+        this.name = name;
+    }
+}
+
+interface productType{
+    productName:string,
+    price:number,
+    available:boolean
+}
+
+class Product implements productType{
+    public price:number;
+    public available:boolean;
+    constructor(public productName:string,price:number,available:boolean){
+        this.productName = productName;
+        this.price = price;
+        this.available = available;
+    }
+
+}
