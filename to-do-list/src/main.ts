@@ -56,9 +56,8 @@ const generateADiv = (todo: toDo) => {
   deleteBtn.onclick = () => {
     deleteTodo(todo.id);
   }
-  const brTag: HTMLBRElement = document.createElement("br");
-  brTag.innerHTML = `<br/>`
-  todoDiv.append(checkBox, pTag, deleteBtn, brTag);
+
+  todoDiv.append(checkBox, pTag, deleteBtn);
   toDosContainer.append(todoDiv);
 }
 
